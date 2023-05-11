@@ -1,0 +1,4 @@
+# Reference: https://github.com/github/gitignore/blob/main/Python.gitignore
+
+# Ignore MacOS misc file
+node_modules
