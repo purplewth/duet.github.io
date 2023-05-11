@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Duo Duet Party</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P" rel="stylesheet">
+    <link href="style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background">
+
+    </div>
+
+    <div id="game-area">
+        <canvas id="game-canvas" width="1280px" height="600px"></canvas>
+        <div id="score-panel" class="transparent">
+            <ul>
+                <li><img id="player-icon" src="">PLAYER: <text id="player-name"></text></li>
+                <li><img id="time-icon" src="./src/img/stop_watch.png">TIME: <text id="time-remaining"></text></li>
+                <li><img id="score-icon" src="./src/img/score.png">SCORE: <text id="score"></text></li>
+                <li><img id="coin-icon" src="./src/img/coin_pixel.png">COINS: <text id="coins"></text></li>
+                <li></li>
+            </ul>
+        </div>                
+
+        <div id="game-stat-overlay" class="overlay">
+            <div id="table-holder"> 
+                <div id="table-title"> Summary </div>
+                <table id="game-stat-table" >
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Score</th>
+                            <th>Coins Collected</th>
+                            <th>Bullet Used</th>
+                            <th>Star Activated</th>
+                            <th>Rank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <div id="back-to-room-prompt"> Press ENTER to return to game room </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div id="online-users-panel" class="online-users-panel">
+        <div style="text-align: center;">
+            <span class="caption-retro-text">Online users</span>
+            <div id="online-users-area" class="online-users-area">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="user-panel" class="user-panel">
+        <div class="username-box">
+            <span class='caption-retro-text'>Welcome Back, </span>
+            <span class="user-avatar"></span>
+            <span class="user-name"></span>
+        </div>
+        <button id="signout-button" class="signout-button">Sign Out</button>
+    </div>
+
+    <div id="game-lobby" class="container">
+        <div class="caption-retro-text" id="join-room-prompt">Join a game room below</div>
+		  <div id="room-area" class="room-area">
+
+		  </div>
+
+      <div id="bottom-menu-container" class="grid-container"> 
+          <div id="create-room" class="create-room grid-child">
+              <div class="caption-retro-text" id="create-room-prompt">Create a New Game Room</div>
+              <form id="create-room-form">
+                  <input type="text" id="room-name-input" maxlength="8" placeholder="Enter the room name" required>
+                  <button id="create-room-button" type="submit">Create Room</button>
+                  <div id="create-room-message" class="warning cetner"></div>
+              </form>
+          </div>
+
+          <div id="how-to-play-container" class="how-to-play grid-child">
+              <span id="how-to-play-prompt"> Don't know how to play? </span>
+              <div class="spacer-3"></div>
+              <button id="show-how-to-play"> Gameplay Description </button>
+          </div>    
+      </div>
+	</div>
+
+
+    <div id="gameplay-overlay" class="overlay">
+        <div id="gameplay-plane">
+            <button id="close-gameplay-btn">X</button>
+            <div id="top-bar"><h2>Gameplay Description</h2></div>
+            <div id="gameplay-paragraphs"> 
+                <h3>Introduction</h3>
+                <p class="indented-paragraph">The game is a duet game that 2 players can collect coins randomly appear in different places in the game plane.
+                    Player can obtain score by hitting another player with a bullet.
+                </p>
+                <h3>Player Control</h3>
+                <ul>
+                    <li>Player movement: &uarr; &darr; &larr; &rarr; to move around the plane</li>
+                    <li>Shooting bullet: Press "Space Bar" once to shoot one bullet.</li>
+                    <li>Shooting strong bullet: Hold "F" + "Space Bar" to shoot strong bullet.</li>
+                    <li>Activating star: Press "S" to activate invincible mode with coins.</li>
+                    <li>Cheat-key: not going to tell you :P 
+                        <p id="cheat-key-manual">Cheat Key: Press "CapsLock" enjoy :P</p>
+                    </li>
+                </ul>
+                <h3>Game rules</h3>
+                <p>Spending</p>
+                <ul>
+                    <li>Shooting bullet: 1 coin</li>
+                    <li>Shooting strong bullet: 3 coins</li>
+                    <li>Activating star: 10 coins</li>
+                </ul>
+                <p>Randomly Appear Items</p>
+                <ul>
+                    <li>Stepping on banana: freeze 3 s</li>
+                    <li>Collecting ice: freeze your opponent for 3 s</li>
+                </ul>
+                <p id="win-condition-prompt">Win Condition</p>
+                <p class="indented-paragraph">
+                    Player will be ranked according to an integrated score aggregating the score (the dominant factor), shooting hit rate (accuracy) and total coins collected. </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-room" class="container">
+        <span id="room-name-label">Room Name: </span>
+        <div id="room-name" class="caption-retro-text"></div>
+        <div id="room-user-area-header", class="caption-retro-text"> Current users in the room </div>
+        <hr>
+        <div id="room-users-area" class="room-area">
+        </div>
+
+        <div id="game-room-panel" class="game-room-panel">
+            <button id="ready-button" class="ready-button">Ready</button>
+            <button id="leave-room-button" class="leave-room-button">Leave Room</button>
+            <button id="start-game-button" class="start-game-button disabled">Start Duet!</button>
+        </div>
+    </div>
+
+
+    <div id="signin-overlay" class="overlay">
+        <div class="signin-panel">
+            <form id="signin-form" class="col">
+                <div class="caption">SIGN IN</div>
+                <div class="spacer-0"></div>
+                <input id="signin-username" class="form-input" placeholder="Enter your username"></input>
+                <input id="signin-password" class="form-input" type="password" placeholder="Enter your password"></input>
+                <div class="spacer-0"></div>
+                <button type="submit">Sign In</button>
+                <div id="signin-message" class="warning center"></div>
+                <div class="spacer-grow"></div>
+            </form>
+
+            <div class="spacer-0"></div>            
+            
+            <form id="register-form" class="col">
+                <div class="caption">OR, REGISTER</div>
+                <div class="spacer-0"></div>
+                <input id="register-username" class="form-input" maxlength="8" placeholder="Enter your username"></input>
+                <input id="register-password" class="form-input" type="password" placeholder="Enter your password"></input>
+                <input id="register-confirm" class="form-input" type="password" placeholder="Enter password again"></input>
+                <div class="spacer-0"></div>
+                <button type="submit">Register</button>
+                <div id="register-message" class="warning center"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.min.js"></script>
+    <script src="scripts/socket.js"></script>
+    <script src="scripts/registration.js"></script>
+    <script src="scripts/authentication.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/player.js"></script>
+    <script src="scripts/sprite.js"></script>
+    <script src="scripts/bounding_box.js"></script>
+    <script src="scripts/gameUI.js"></script>
+    <script src="scripts/bullet.js"></script>
+    <script src="scripts/coin.js"></script>
+    <script src="scripts/star.js"></script>
+    <script src="scripts/random_items.js"></script>
+
+    <script>
+        $(document).ready(() => {
+            // Initialize the UI
+            UI.initialize();
+
+
+            // Validate the signin
+            Authentication.validate(
+                () => {
+                    SignInForm.hide();
+                    UserPanel.update(Authentication.getUser());
+                    
+                    UserPanel.show();
+                    OnlineUsersPanel.show();
+                    GameLobby.show();
+
+                    Socket.connect();
+                },
+                () => { SignInForm.show(); }
+            );
+        });
+
+    </script>
+</body>
+
+</html>

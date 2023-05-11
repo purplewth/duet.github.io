@@ -1,0 +1,35 @@
+{
+ "test": {
+  "password": "$2b$10$GAvdA.g1rzr.rS1./otlLOWpcIFXayaL00K7GRF57eoZujJHd.laW"
+ },
+ "test2": {
+  "password": "$2b$10$JJJPS/tPm7DLvizHEEv4xOWcCNZGEuOqqgFRbvF2HmP2PvVGqVB.e"
+ },
+ "test3": {
+  "password": "$2b$10$iyi6QvIsROUEOd3fWVPsCe.y954cmlVNqBQl7QLo09qqHzMUccCyO"
+ },
+ "test1": {
+  "password": "$2b$10$nZ8IjXqDxPtFVDOKBBW/YuU9Fd6NMfJtn/8cj0fxgaDKTjwoej.lO"
+ },
+ "edrick": {
+  "password": "$2b$10$enFdfGq4ggpqxofDIjEI/.QB/emKMJRcMvCQpfjxx0uxVb0wpobRe"
+ },
+ "kwan": {
+  "password": "$2b$10$J2V8VbG5oZaDHQiXORONvOkUSJ/tm.kqjThiY.ObK4nA0cpE8W3AC"
+ },
+ "t": {
+  "password": "$2b$10$K0xT.zG5L1YPiS71DZuomeeLkwdXFP1vO7f/iiwOKqjhDyKgL/NMa"
+ },
+ "y": {
+  "password": "$2b$10$Ke2ZxZwkyTJWjxCbtSfJ.u055m0p5ZSgqYDUU/h795IvF0dxWRDLS"
+ },
+ "abc": {
+  "password": "$2b$10$t//dcC7IYFMP.FGKt4cjJ.Wh0/dKtTSUI29K2DHlKL4wgG744MkPS"
+ },
+ "ab": {
+  "password": "$2b$10$hjA.YRoa.HY3QCEDbp0jb.UQuDtzD59XySbDFvRkl6d2tbAwpE.rS"
+ },
+ "abcd": {
+  "password": "$2b$10$9mPnxUgK4LIN/9WBo76fSeiZR2yZEOWXPvODCZFUeGUE3/mA/WN.2"
+ }
+}
